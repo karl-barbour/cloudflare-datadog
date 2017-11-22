@@ -37,7 +37,7 @@ docker-logs:
 	docker logs -f `docker ps -lqf ancestor=${MUTABLE_IMAGE}`
 
 docker-run:
-	docker run -d -P --env-file .env --name ${SHORT_NAME} ${MUTABLE_IMAGE}
+	docker run -d -P --env-file .env --restart unless-stopped --name ${SHORT_NAME} ${MUTABLE_IMAGE}
 
 docker-shell:
 	docker run -it --rm -v ${PWD}:/usr/src/app --env-file .env --entrypoint /bin/sh ${MUTABLE_IMAGE}
